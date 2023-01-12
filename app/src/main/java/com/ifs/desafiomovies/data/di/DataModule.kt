@@ -32,6 +32,8 @@ class DataModule {
 
     @Provides
     fun provideIntercept(): Interceptor{
+
+
         return Interceptor { chain ->
             val builder = chain.request().newBuilder()
             builder.header("Authorization","Bearer $API_TOKEN")

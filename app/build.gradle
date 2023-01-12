@@ -59,7 +59,10 @@ dependencies {
     //add paging library
     implementation 'androidx.paging:paging-runtime-ktx:3.1.1'
 
-
+    // Biblioteca do retrofit2
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
