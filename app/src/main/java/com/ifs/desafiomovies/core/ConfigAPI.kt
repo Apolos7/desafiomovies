@@ -4,5 +4,6 @@ object ConfigAPI {
     const val BASE_URL = "https://api.themoviedb.org/3/"
     const val TIME_CONNECT = 3   //In seconds
     const val TIME_READ = 3   //In seconds
-    const val API_TOKEN = ""
+    // TODO: Adicionar token da API posteriormente
+    const val API_TOKEN = "dasdah0s9d8y7pq9aw8yerpay8hfsp9a8sydfp98aysd9p8ayhsd"
 }
