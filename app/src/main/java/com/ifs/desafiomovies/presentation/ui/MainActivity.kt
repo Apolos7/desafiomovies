@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.listMovies.rvMovies.adapter = moviesSimilarListAdapter
+        binding.listMovies.adapter = moviesSimilarListAdapter
         mainViewModel.getMovieDetail()
         lifecycle(mainViewModel.uiState, ::handleGetMovie)
         observe(mainViewModel.movieData, ::handleMovie)

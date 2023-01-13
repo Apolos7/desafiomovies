@@ -10,7 +10,6 @@
         android:id="@+id/ivMoviePoster"
         android:layout_width="100dp"
         android:layout_height="120dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -20,7 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        android:layout_marginStart="40dp"
+        app:layout_constraintStart_toEndOf="@+id/ivMoviePoster"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="nome do filme" />
 
@@ -28,7 +28,8 @@
         android:id="@+id/tvMovieYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        android:layout_marginStart="40dp"
+        app:layout_constraintStart_toEndOf="@id/ivMoviePoster"
         app:layout_constraintTop_toBottomOf="@id/tvMovieName"
         tools:text="ano do filme" />
 
@@ -36,16 +37,10 @@
         android:id="@+id/tvMovieGenres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@id/tvMovieYear"
         app:layout_constraintTop_toBottomOf="@id/tvMovieName"
         tools:text="gênero" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="120dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
