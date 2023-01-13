@@ -7,29 +7,30 @@
 
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivMoviePoster"
         android:layout_width="100dp"
         android:layout_height="120dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/imageView"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-    android:text="Blazing saddles" />
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="nome do filme" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@id/tvMovieName"
-        app:layout_constraintStart_toEndOf="@id/imageView"
-        android:text="1974" />
+        tools:text="ano do filme" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieGenres"
@@ -37,7 +38,14 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/tvMovieYear"
         app:layout_constraintTop_toBottomOf="@id/tvMovieName"
-        android:text="gênero"/>
+        tools:text="gênero" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="120dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
