@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.listMovies.adapter = moviesSimilarListAdapter
         mainViewModel.getMovieDetail()
-        lifecycle(mainViewModel.uiState, ::handleGetMovie)
-        observe(mainViewModel.movieData, ::handleMovie)
+        /*lifecycle(mainViewModel.uiState, ::handleGetMovie)
+        observe(mainViewModel.movieData, ::handleMovie)*/
     }
 
     private fun handleGetMovie(uiState: UiState) {
@@ -69,7 +69,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupListener(){
-
+        binding.btnFavorita.setOnClickListener {
+            println("setupListener")
+        }
     }
 
     private fun handleGetSimilarMovies() {

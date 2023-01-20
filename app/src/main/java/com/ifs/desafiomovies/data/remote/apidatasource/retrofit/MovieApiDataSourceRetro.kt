@@ -16,11 +16,14 @@ class MovieApiDataSourceRetro @Inject constructor(
     private val movieService: MovieService
 ) : MovieApiDataSource {
 
-    override suspend fun getMovie(): Either<Movie, Exception> {
+    // TODO: Finalizar retrofit posteriormente
 
+    override suspend fun getMovie(): Either<Movie, Exception> {
+        return Either.Success(Movie(1056735, "Minecraft: The Movie", 4.8, 987, "19/01/2023", "/qYzI2mKmj8mG54l1nhUunZnjiKw.jpg"))
     }
 
     override suspend fun getAllGenres(): Either<List<Genre>, Exception>{
-
+        val listaGeneros: List<Genre> = listOf(Genre(1,"Filme"))
+        return Either.Success(listaGeneros)
     }
 }

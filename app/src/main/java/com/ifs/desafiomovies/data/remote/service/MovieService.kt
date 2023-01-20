@@ -12,12 +12,13 @@ interface MovieService {
         const val MOVIE_ID = 40096
     }
 
-    // TODO: Adicionar end-points para busca na API
-
-    /*@GET("genre/movie/list")
+    @GET("movie/$MOVIE_ID")
+    suspend fun getMovie(): Response<MovieResponse>
 
     @GET("movie/$MOVIE_ID/similar")
+    suspend fun getSimilarMovies(@Query("page") page:Int): Response<ResultMovieSimilarResponse>
 
-    @GET("movie/$MOVIE_ID")*/
+    @GET("genre/movie/list")
+    suspend fun getAllGenres(): Response<ResultGenreResponse>
 
 }

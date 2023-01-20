@@ -23,6 +23,11 @@ class MovieRepositoryImpl @Inject constructor (
         private const val PAGE_SIZE = 20
     }
 
+    // TODO: Finalizar getMovie
+    override suspend fun getMovie(): Either<Movie, Exception> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getSimilarMovies(): Flow<PagingData<Movie>> {
         val genres = movieApiDataSource.getAllGenres()
         return Pager(config = PagingConfig(pageSize = PAGE_SIZE)) {
@@ -32,6 +37,18 @@ class MovieRepositoryImpl @Inject constructor (
                 is Either.Success ->  { result.data}
                 else -> {null}
             })}
+    }
+
+    override fun favorite() {
+        sharedDataSource.favorite()
+    }
+
+    override fun disfavor() {
+        sharedDataSource.disfavor()
+    }
+
+    override fun isFavorite(): Boolean {
+        return sharedDataSource.isFavorite()
     }
 
     private fun PagingData<Movie>.setGenre(list: List<Genre>?):PagingData<Movie>{
