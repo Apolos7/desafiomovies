@@ -16,14 +16,31 @@ class MovieApiDataSourceRetro @Inject constructor(
     private val movieService: MovieService
 ) : MovieApiDataSource {
 
-    // TODO: Finalizar retrofit posteriormente
-
+    /*
+    * Chama o service que faz a requisição na API por meio do retrofit
+    * Com base no conteudo da response, é retornado um Either de erro ou sucesso com o filme
+    * */
     override suspend fun getMovie(): Either<Movie, Exception> {
-        return Either.Success(Movie(1056735, "Minecraft: The Movie", 4.8, 987, "19/01/2023", "/qYzI2mKmj8mG54l1nhUunZnjiKw.jpg"))
+        return try{
+            val result = movieService.getMovie()
+            Either.Success(result.toData())
+        }
+        catch (e:Exception){
+            Either.Failure(ResponseError.IOErrorException)
+        }
     }
 
-    override suspend fun getAllGenres(): Either<List<Genre>, Exception>{
-        val listaGeneros: List<Genre> = listOf(Genre(1,"Filme"))
-        return Either.Success(listaGeneros)
+    /* *
+    * Busca todos os gêneros do filme na API
+    * */
+    override suspend fun getAllGenres(): Either<List<Genre>, Exception> {
+        return try{
+            val result = movieService.getAllGenres()
+            val listaGeneros: List<Genre> = result.genres.map { it.toData() }
+            Either.Success(listaGeneros)
+        }
+        catch (e:Exception){
+            Either.Failure(ResponseError.IOErrorException)
+        }
     }
 }

@@ -14,8 +14,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor (
-    private val sharedDataSource: SharedDataSource,
-    private val movieApiDataSource: MovieApiDataSource,
+    private val sharedDataSource: SharedDataSource, // Banco de dados local
+    private val movieApiDataSource: MovieApiDataSource, // Acesso aos dados da API
     private val moviePagingApiDataSourceRetro: MoviePagingApiDataSourceRetro
 ):
     MovieRepository {
@@ -23,9 +23,9 @@ class MovieRepositoryImpl @Inject constructor (
         private const val PAGE_SIZE = 20
     }
 
-    // TODO: Finalizar getMovie
+    // Busca o filme lá na API my Friend
     override suspend fun getMovie(): Either<Movie, Exception> {
-        TODO("Not yet implemented")
+        return movieApiDataSource.getMovie()
     }
 
     override suspend fun getSimilarMovies(): Flow<PagingData<Movie>> {

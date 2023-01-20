@@ -72,7 +72,7 @@
                 android:id="@+id/fav_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@drawable/favorite_full_24" />
+                app:srcCompat="@drawable/favorite_full_24"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fav_count"
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                tools:srcCompat="@drawable/popularity_24" />
+                app:srcCompat="@drawable/popularity_24"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/visualize_count"
@@ -100,18 +100,14 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listMovies"
+    <include
+        android:id="@+id/list_movies"
+        layout="@layout/list_movies"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/carlos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        tools:itemCount="3"
-        tools:layout_editor_absoluteX="0dp"
-        tools:listitem="@layout/item_movie" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

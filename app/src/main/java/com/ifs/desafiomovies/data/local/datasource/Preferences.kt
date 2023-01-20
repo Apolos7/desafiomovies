@@ -11,7 +11,9 @@ class Preferences(context: Context) {
     private val preferences = context.getSharedPreferences("shared", Context.MODE_PRIVATE)
 
     fun favorite() {
-
+        val edit = preferences.edit()
+        edit.putBoolean(FAVORITE, true)
+        edit.apply()
     }
 
     fun disfavor() {

@@ -13,12 +13,13 @@ interface MovieService {
     }
 
     @GET("movie/$MOVIE_ID")
-    suspend fun getMovie(): Response<MovieResponse>
+    suspend fun getMovie(): MovieResponse
 
     @GET("movie/$MOVIE_ID/similar")
     suspend fun getSimilarMovies(@Query("page") page:Int): Response<ResultMovieSimilarResponse>
 
+
     @GET("genre/movie/list")
-    suspend fun getAllGenres(): Response<ResultGenreResponse>
+    suspend fun getAllGenres(): ResultGenreResponse
 
 }

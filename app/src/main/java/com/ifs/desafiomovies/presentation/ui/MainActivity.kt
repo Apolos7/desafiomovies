@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.listMovies.adapter = moviesSimilarListAdapter
+        //binding.listMovies.adapter = moviesSimilarListAdapter
+        binding.listMovies.rvMovies.adapter = moviesSimilarListAdapter
         mainViewModel.getMovieDetail()
         lifecycle(mainViewModel.uiState, ::handleGetMovie)
         observe(mainViewModel.movieData, ::handleMovie)
@@ -41,12 +42,10 @@ class MainActivity : AppCompatActivity() {
             // Mostrar os dados na tela
             is UiState.Success -> {
                 progressDialog.dismiss()
-
             }
             // Mostrar dialog de carregamento
             is UiState.Loading -> {
                 progressDialog.show()
-
             }
             // Travar o aplicativo
             is UiState.Failure -> {
@@ -54,12 +53,13 @@ class MainActivity : AppCompatActivity() {
                 createDialog {
                     setMessage(exception(uiState.exception))
                 }.show()
-            } else -> Unit
+            }
+            else -> Unit
         }
     }
 
 
-    private fun handleMovie(movieItemUiState: Movie){
+    private fun handleMovie(movieItemUiState: Movie) {
         setupMovieDetail(movieItemUiState)
         setupListener()
         handleGetSimilarMovies()
@@ -69,16 +69,20 @@ class MainActivity : AppCompatActivity() {
     /* *
     * Recebe o filme e seta todos os seus dados na tela
     * */
-    private fun setupMovieDetail(movie: Movie){
+    private fun setupMovieDetail(movie: Movie) {
         voteCount = movie.vote_count
         if (mainViewModel.isFavorite()) {
             voteCount++
+            binding.favorite()
+        } else {
+            binding.disfavor()
         }
 
-        // Atualizando o titulo, contador votos e popularidadee do filme na tela
+        // Atualizando o titulo, contador votos e popularidade do filme na tela
         binding.tvMovieName.text = movie.title
         binding.favCount.text = voteCount.toString()
         binding.visualizeCount.text = movie.popularity.toString()
+
         // Glide é responsável por carregar o poster do filme na tela
         Glide.with(binding.root.context)
             .load(movie.poster_path)
@@ -87,14 +91,29 @@ class MainActivity : AppCompatActivity() {
             .into(binding.ivMoviePosterLg)
     }
 
-    private fun setupListener(){
+    private fun setupListener() {
         binding.btnFavorita.setOnClickListener {
-            println("setupListener")
+            println(mainViewModel.isFavorite())
+            if (mainViewModel.isFavorite()) {
+                voteCount--
+                binding.favCount.text = voteCount.toString()
+                mainViewModel.disfavor()
+                binding.disfavor() // Muda a imagem do botão para o coração vazio
+            } else {
+                voteCount++
+                mainViewModel.favorite()
+                binding.favCount.text = voteCount.toString()
+                binding.favorite() // Muda a imagem do botão para o coração cheio
+            }
         }
     }
 
     private fun handleGetSimilarMovies() {
-
+        lifecycleScope.launch{
+            mainViewModel.moviesSimilarPaging().collectLatest { response ->
+                moviesSimilarListAdapter.submitData(response)
+            }
+        }
     }
 
 }
