@@ -35,9 +35,26 @@ class MainActivity : AppCompatActivity() {
         lifecycle(mainViewModel.uiState, ::handleGetMovie)
         observe(mainViewModel.movieData, ::handleMovie)
     }
+
     private fun handleGetMovie(uiState: UiState) {
         when (uiState) {
+            // Mostrar os dados na tela
+            is UiState.Success -> {
+                progressDialog.dismiss()
 
+            }
+            // Mostrar dialog de carregamento
+            is UiState.Loading -> {
+                progressDialog.show()
+
+            }
+            // Travar o aplicativo
+            is UiState.Failure -> {
+                progressDialog.dismiss()
+                createDialog {
+                    setMessage(exception(uiState.exception))
+                }.show()
+            } else -> Unit
         }
     }
     private fun handleMovie(movieItemUiState: Movie){

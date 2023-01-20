@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--Permissão para que o aplicativo consiga acessar a internet-->
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".core.App"
@@ -14,7 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/tmdbTheme"
         tools:targetApi="31" >
-
     </application>
 
 </manifest>
