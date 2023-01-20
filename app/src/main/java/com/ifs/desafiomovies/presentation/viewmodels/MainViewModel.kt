@@ -32,7 +32,6 @@ class MainViewModel @Inject constructor(
     private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState.Empty)
     val uiState: StateFlow<UiState> get() = _uiState
 
-    // TODO:
     /* *
     * faz update no UIState pra loading, executando a chamada do método getMovie logo em seguida,
     * dependendo do resultado (Sucesso, Falha), o UIstate é mudado de estado.

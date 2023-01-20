@@ -70,6 +70,21 @@ class MainActivity : AppCompatActivity() {
     * Recebe o filme e seta todos os seus dados na tela
     * */
     private fun setupMovieDetail(movie: Movie){
+        voteCount = movie.vote_count
+        if (mainViewModel.isFavorite()) {
+            voteCount++
+        }
+
+        // Atualizando o titulo, contador votos e popularidadee do filme na tela
+        binding.tvMovieName.text = movie.title
+        binding.favCount.text = voteCount.toString()
+        binding.visualizeCount.text = movie.popularity.toString()
+        // Glide é responsável por carregar o poster do filme na tela
+        Glide.with(binding.root.context)
+            .load(movie.poster_path)
+            .placeholder(R.drawable.photo_load)
+            .fallback(R.drawable.broken_image)
+            .into(binding.ivMoviePosterLg)
     }
 
     private fun setupListener(){

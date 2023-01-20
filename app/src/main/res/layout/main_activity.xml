@@ -41,7 +41,7 @@
             >
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvMovieYear"
+                android:id="@+id/tvMovieName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -56,7 +56,7 @@
                 android:layout_gravity="center"
                 android:background="@android:color/transparent"
                 android:layout_marginStart="210dp"
-                tools:srcCompat="@drawable/favorite_empty_24"
+                app:srcCompat="@drawable/favorite_full_24"
                 />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
