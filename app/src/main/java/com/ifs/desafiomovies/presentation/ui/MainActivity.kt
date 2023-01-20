@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.listMovies.adapter = moviesSimilarListAdapter
         mainViewModel.getMovieDetail()
-        /*lifecycle(mainViewModel.uiState, ::handleGetMovie)
-        observe(mainViewModel.movieData, ::handleMovie)*/
+        lifecycle(mainViewModel.uiState, ::handleGetMovie)
+        observe(mainViewModel.movieData, ::handleMovie)
     }
 
     private fun handleGetMovie(uiState: UiState) {
@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
             } else -> Unit
         }
     }
+
+
     private fun handleMovie(movieItemUiState: Movie){
         setupMovieDetail(movieItemUiState)
         setupListener()
@@ -64,8 +66,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    /* *
+    * Recebe o filme e seta todos os seus dados na tela
+    * */
     private fun setupMovieDetail(movie: Movie){
-
     }
 
     private fun setupListener(){

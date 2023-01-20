@@ -26,9 +26,30 @@ class MainViewModel @Inject constructor(
     private val isFavoriteMovie: IsFavoriteMovie
 ): ViewModel(){
 
+    // TODO: Pesquisar posteriormente sobre MultableLiveData e LiveData
+    private val _movieLiveData: MutableLiveData<Movie> = MutableLiveData()
+    val movieData: LiveData<Movie> get() = _movieLiveData
+    private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState.Empty)
+    val uiState: StateFlow<UiState> get() = _uiState
 
+    // TODO:
+    /* *
+    * faz update no UIState pra loading, executando a chamada do método getMovie logo em seguida,
+    * dependendo do resultado (Sucesso, Falha), o UIstate é mudado de estado.
+    * */
     fun getMovieDetail(){
-
+        viewModelScope.launch {
+            _uiState.update { UiState.Loading }
+            when(val result = getMovie()){
+                is Either.Success ->  {
+                    _movieLiveData.value = result.data!!
+                    _uiState.update { UiState.Success }
+                }
+                is Either.Failure -> _uiState.update {
+                    UiState.Failure(result.cause as ResponseError)
+                }
+            }
+        }
     }
 
     fun favorite() = favoriteMovie()

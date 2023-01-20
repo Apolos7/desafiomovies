@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Movies</string>
 
+    <!--Adicionar Strings aqui-->
+    <string name="ioError">Sifu de</string>
+
 </resources>
